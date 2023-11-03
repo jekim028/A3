@@ -1,10 +1,12 @@
 import getEnv from "./env";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   ResponseType,
   useAuthRequest,
   makeRedirectUri,
 } from "expo-auth-session";
+
+import { AuthContext } from "./authContext";
 
 import * as WebBrowser from "expo-web-browser";
 
@@ -20,7 +22,8 @@ const {
 WebBrowser.maybeCompleteAuthSession();
 
 const useSpotifyAuth = () => {
-  const [token, setToken] = useState(null);
+  const { token, setToken } = useContext(AuthContext);
+  // const [token, setToken] = useState(null);
   const [request, response, promptAsync] = useAuthRequest(
     {
       responseType: ResponseType.Token,

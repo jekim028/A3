@@ -37,6 +37,7 @@ const ENV = {
     },
     TOP_TRACKS_API: "https://api.spotify.com/v1/me/top/tracks",
     ALBUM_TRACK_API_GETTER: (albumId) => "https://api.spotify.com/v1/TODO",
+    SEARCH_API: (q) => `https://api.spotify.com/v1/search?q=${q}&type=track`,
   },
 };
 

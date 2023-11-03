@@ -2,7 +2,7 @@ import axios from "axios";
 import getEnv from "./env";
 
 const {
-  SPOTIFY_API: { TOP_TRACKS_API, ALBUM_TRACK_API_GETTER },
+  SPOTIFY_API: { TOP_TRACKS_API, ALBUM_TRACK_API_GETTER, SEARCH_API },
 } = getEnv();
 
 const ERROR_ALERT = new Error(
@@ -64,6 +64,17 @@ export const getAlbumTracks = async (albumId, token) => {
       return item;
     });
     return formatter(transformedResponse);
+  } catch (e) {
+    console.error(e);
+    alert(ERROR_ALERT);
+    return null;
+  }
+};
+
+export const getSpotifySearch = async (token, q) => {
+  try {
+    let res = await fetcher(SEARCH_API(q), token);
+    return formatter(res.data?.tracks.items);
   } catch (e) {
     console.error(e);
     alert(ERROR_ALERT);

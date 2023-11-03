@@ -39,7 +39,6 @@ const renderTrack = (item, index) => {
 const TopTracks = ({ tracks }) => {
   return (
     <View style={styles.container}>
-      <Header />
       <FlatList
         data={tracks}
         renderItem={(item, index) => renderTrack(item.item, item.index + 1)} // index is 0-indexed
